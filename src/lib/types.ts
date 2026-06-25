@@ -20,7 +20,18 @@ export interface Service {
 
 export type ProjectCategory = "automotive" | "brand" | "ai";
 
+export interface ProjectMedia {
+  url: string;
+  caption: string;
+  /** Natural pixel dimensions captured at upload (used for true aspect ratio). */
+  width?: number | null;
+  height?: number | null;
+}
+
 export interface Project {
+  /** Present for DB-backed projects; used for the detail-page link. */
+  id?: string;
+  slug?: string;
   title: string;
   category: ProjectCategory;
   categoryLabel: string;
@@ -28,9 +39,11 @@ export interface Project {
   emoji: string;
   gradient: string;
   featured?: boolean;
-  /** Optional image under /public/images/projects/ — e.g. "/images/projects/ittehad-steel.jpg".
+  /** Optional cover image — e.g. an uploaded URL or "/images/projects/ittehad-steel.jpg".
    * Leave empty ("") to keep the gradient + emoji placeholder. */
   image?: string;
+  /** Gallery of images/videos shown on the project detail page. */
+  media?: ProjectMedia[];
 }
 
 export interface Skill {

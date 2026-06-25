@@ -10,7 +10,15 @@ const reveal = {
   viewport: { once: true, margin: "-60px" },
 };
 
-export default function About() {
+interface AboutProps {
+  industries?: string[];
+  profileImage?: string;
+}
+
+export default function About({
+  industries = INDUSTRIES,
+  profileImage = PROFILE_IMAGE,
+}: AboutProps) {
   return (
     <section id="about" className="relative px-6 py-28 sm:px-10 lg:px-14">
       <div className="mx-auto max-w-7xl">
@@ -33,9 +41,9 @@ export default function About() {
           <motion.div {...reveal} transition={{ duration: 0.7 }} className="relative">
             <div className="absolute -bottom-4 -right-4 h-full w-full border border-gold/60" aria-hidden />
             <div className="relative flex aspect-[3/4] items-center justify-center overflow-hidden border border-border bg-gradient-to-br from-[#16263a] via-[#0e1420] to-[#080c12]">
-              {PROFILE_IMAGE ? (
+              {profileImage ? (
                 <Image
-                  src={PROFILE_IMAGE}
+                  src={profileImage}
                   alt="Hammad Ayub"
                   fill
                   className="object-cover"
@@ -74,7 +82,7 @@ export default function About() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-2.5">
-              {INDUSTRIES.map((industry) => (
+              {industries.map((industry) => (
                 <span
                   key={industry}
                   className="border border-border px-3 py-1.5 text-xs tracking-wide text-muted transition-colors hover:border-gold hover:text-gold"

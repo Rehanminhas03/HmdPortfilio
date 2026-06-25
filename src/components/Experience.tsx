@@ -3,7 +3,13 @@
 import { motion } from "framer-motion";
 import { EXPERIENCE } from "@/lib/data";
 
-export default function Experience() {
+interface ExperienceProps {
+  experience?: typeof EXPERIENCE;
+}
+
+export default function Experience({
+  experience = EXPERIENCE,
+}: ExperienceProps) {
   return (
     <section id="experience" className="relative px-6 py-28 sm:px-10 lg:px-14">
       <div className="mx-auto max-w-7xl">
@@ -26,7 +32,7 @@ export default function Experience() {
         </motion.h2>
 
         <div className="relative mt-16 ml-2 border-l border-gold/30">
-          {EXPERIENCE.map((exp, i) => (
+          {experience.map((exp, i) => (
             <motion.div
               key={`${exp.company}-${i}`}
               initial={{ opacity: 0, y: 24 }}

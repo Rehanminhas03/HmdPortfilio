@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/data";
@@ -15,7 +16,11 @@ const FILTERS: { label: string; value: Filter }[] = [
   { label: "AI", value: "ai" },
 ];
 
-export default function Work() {
+interface WorkProps {
+  projects?: typeof PROJECTS;
+}
+
+export default function Work({ projects = PROJECTS }: WorkProps) {
   const [activeFilter, setActiveFilter] = useState<Filter>("all");
 
   const isActive = (cat: ProjectCategory) =>
@@ -53,7 +58,7 @@ export default function Work() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-0.5 sm:grid-cols-2 lg:grid-cols-3">
-          {PROJECTS.map((project) => {
+          {projects.map((project) => {
             const active = isActive(project.category);
             return (
               <motion.article
@@ -66,7 +71,8 @@ export default function Work() {
                   project.featured ? "sm:col-span-2" : ""
                 } ${active ? "" : "pointer-events-none opacity-25"}`}
               >
-                <div
+                <Link
+                  href={project.slug ? `/work/${project.slug}` : "#"}
                   className={`relative flex items-center justify-center bg-gradient-to-br ${project.gradient} ${
                     project.featured ? "aspect-[16/9]" : "aspect-[16/10]"
                   }`}
@@ -97,11 +103,11 @@ export default function Work() {
                     <h3 className="mt-1.5 font-cormorant text-2xl font-light leading-tight text-white">
                       {project.title}
                     </h3>
-                    <span className="mt-3 inline-block text-xs uppercase tracking-[0.2em] text-muted opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span className="mt-3 inline-block text-xs uppercase tracking-[0.2em] text-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       View Project →
                     </span>
                   </div>
-                </div>
+                </Link>
               </motion.article>
             );
           })}

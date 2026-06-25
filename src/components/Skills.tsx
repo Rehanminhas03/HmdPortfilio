@@ -4,7 +4,15 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SKILL_GROUPS, TOOLS } from "@/lib/data";
 
-export default function Skills() {
+interface SkillsProps {
+  skillGroups?: typeof SKILL_GROUPS;
+  tools?: string[];
+}
+
+export default function Skills({
+  skillGroups = SKILL_GROUPS,
+  tools = TOOLS,
+}: SkillsProps) {
   const barsRef = useRef<HTMLDivElement>(null);
   const inView = useInView(barsRef, { once: true, margin: "-80px" });
 
@@ -32,7 +40,7 @@ export default function Skills() {
         <div ref={barsRef} className="mt-16 grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-20">
           {/* Animated skill bars */}
           <div className="space-y-12">
-            {SKILL_GROUPS.map((group) => (
+            {skillGroups.map((group) => (
               <div key={group.title}>
                 <h3 className="mb-7 text-xs uppercase tracking-[0.3em] text-gold">
                   {group.title}
@@ -67,7 +75,7 @@ export default function Skills() {
               Tools &amp; Platforms
             </h3>
             <div className="flex flex-wrap gap-2.5">
-              {TOOLS.map((tool) => (
+              {tools.map((tool) => (
                 <span
                   key={tool}
                   className="border border-border px-3 py-1.5 text-xs tracking-wide text-muted transition-colors hover:border-gold hover:bg-gold/10 hover:text-white"

@@ -3,7 +3,15 @@
 import { motion } from "framer-motion";
 import { CERTIFICATIONS, EDUCATION } from "@/lib/data";
 
-export default function Education() {
+interface EducationProps {
+  education?: typeof EDUCATION;
+  certifications?: string[];
+}
+
+export default function Education({
+  education = EDUCATION,
+  certifications = CERTIFICATIONS,
+}: EducationProps) {
   return (
     <section id="education" className="relative px-6 py-28 sm:px-10 lg:px-14">
       <div className="mx-auto max-w-7xl">
@@ -26,7 +34,7 @@ export default function Education() {
         </motion.h2>
 
         <div className="mt-14 grid grid-cols-1 gap-0.5 md:grid-cols-2">
-          {EDUCATION.map((edu, i) => (
+          {education.map((edu, i) => (
             <motion.div
               key={edu.degree}
               initial={{ opacity: 0, y: 24 }}
@@ -58,7 +66,7 @@ export default function Education() {
           Certifications
         </motion.h3>
         <div className="grid grid-cols-1 gap-0.5 sm:grid-cols-2 lg:grid-cols-3">
-          {CERTIFICATIONS.map((cert, i) => (
+          {certifications.map((cert, i) => (
             <motion.div
               key={cert}
               initial={{ opacity: 0, y: 20 }}

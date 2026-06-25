@@ -3,7 +3,11 @@
 import { motion } from "framer-motion";
 import { SERVICES } from "@/lib/data";
 
-export default function Services() {
+interface ServicesProps {
+  services?: typeof SERVICES;
+}
+
+export default function Services({ services = SERVICES }: ServicesProps) {
   return (
     <section id="services" className="relative px-6 py-28 sm:px-10 lg:px-14">
       <div className="mx-auto max-w-7xl">
@@ -36,7 +40,7 @@ export default function Services() {
         </motion.p>
 
         <div className="mt-14 grid grid-cols-1 gap-0.5 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((service, i) => (
+          {services.map((service, i) => (
             <motion.div
               key={service.number}
               initial={{ opacity: 0, y: 24 }}
