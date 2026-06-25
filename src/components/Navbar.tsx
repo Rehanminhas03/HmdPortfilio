@@ -1,13 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
+// Root-relative hashes so the links work from any page (home or a /work/* page).
 const LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/#services" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -30,32 +32,32 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 sm:px-10 lg:px-14">
-        <a
-          href="#"
+        <Link
+          href="/"
           className="font-cormorant text-2xl tracking-[0.3em] text-gold"
           aria-label="Hammad Ayub home"
         >
           H · A
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-9 md:flex">
           {LINKS.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className="text-xs uppercase tracking-[0.2em] text-muted transition-colors hover:text-white"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
           <li>
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="bg-gold px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] text-obsidian transition-colors hover:bg-[#d8b95c]"
             >
               Let&apos;s Talk
-            </a>
+            </Link>
           </li>
         </ul>
 
@@ -87,23 +89,23 @@ export default function Navbar() {
         <ul className="flex flex-col gap-1 px-6 py-4 sm:px-10">
           {LINKS.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className="block py-3 text-sm uppercase tracking-[0.2em] text-muted transition-colors hover:text-white"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
           <li className="pt-2">
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               onClick={() => setMenuOpen(false)}
               className="inline-block bg-gold px-5 py-3 text-xs font-medium uppercase tracking-[0.2em] text-obsidian"
             >
               Let&apos;s Talk
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

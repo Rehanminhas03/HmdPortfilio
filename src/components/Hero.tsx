@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 
 const STATS = [
@@ -23,7 +24,7 @@ const item: Variants = {
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden">
+    <section className="relative flex min-h-screen flex-col overflow-hidden">
       {/* Background glows */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -47,7 +48,7 @@ export default function Hero() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative mx-auto w-full max-w-7xl px-6 pb-40 pt-32 sm:px-10 lg:px-14"
+        className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-6 pb-12 pt-32 sm:px-10 lg:px-14"
       >
         <motion.span
           variants={item}
@@ -82,18 +83,18 @@ export default function Hero() {
         </motion.p>
 
         <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
-          <a
-            href="#work"
+          <Link
+            href="/#work"
             className="bg-gold px-8 py-4 text-xs font-medium uppercase tracking-[0.2em] text-obsidian transition-colors hover:bg-[#d8b95c]"
           >
             View My Work
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/#contact"
             className="border border-border px-8 py-4 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-gold hover:text-gold"
           >
             Start a Project
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
 
